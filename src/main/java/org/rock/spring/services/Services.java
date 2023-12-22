@@ -68,38 +68,6 @@ public class Services {
         createHttpServer("JimiHendrix.jpg", hendrixPort);
         createHttpServer("Slash.jpg", slashPort);
         createHttpServer("EddieVanHalen.jpg", eddiePort);
-//        createHttpServer("quarkus.jpg", hendrixPort);
-
-//        var jHendrix = Files
-//                .readAllBytes(new File(getClass().getResource("/META-INF/resources/JimiHendrix.jpg").toURI()).toPath());
-//        var jEddie = Files.readAllBytes(
-//                new File(getClass().getResource("/META-INF/resources/EddieVanHalen.jpg").toURI()).toPath());
-//        var jSlash = Files
-//                .readAllBytes(new File(getClass().getResource("/META-INF/resources/Slash.jpg").toURI()).toPath());
-//        var jQuarkus = Files
-//                .readAllBytes(new File(getClass().getResource("/META-INF/resources/quarkus.jpg").toURI()).toPath());
-//        Random random = new Random();
-//        vertx.createHttpServer().requestHandler(req -> {
-//            vertx.setTimer(slashDelay, x -> {
-//                req.response().endAndForget(Base64.getEncoder().encodeToString(jSlash));
-//            });
-//        }).listenAndAwait(slashPort);
-//
-//        vertx.createHttpServer().requestHandler(req -> {
-//            vertx.setTimer(hendrixDelay, x -> {
-//                req.response().endAndForget(Base64.getEncoder().encodeToString(jHendrix));
-//            });
-//        }).listenAndAwait(hendrixPort);
-//
-//        vertx.createHttpServer().requestHandler(req -> {
-//            vertx.setTimer(5, x -> {
-//                if (random.nextInt(100) > (100 - eddieFailureRatio)) {
-//                    req.response().endAndForget(Base64.getEncoder().encodeToString(jEddie));
-//                } else {
-//                    req.response().endAndForget(Base64.getEncoder().encodeToString(jQuarkus));
-//                }
-//            });
-//        }).listenAndAwait(eddiePort);
 
         logger.info("""
                 Services Started:
