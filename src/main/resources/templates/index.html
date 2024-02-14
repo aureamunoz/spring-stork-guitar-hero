@@ -97,11 +97,6 @@
 </body>
 
 <script>
-    function append(cell, pos, data) {
-        console.log(cell.getElementsByTagName("td"))
-        cell.getElementsByTagName("td")[pos].innerHTML = data;
-    }
-
     async function invoke() {
         let table = document.getElementById("results");
         let run = 1;
@@ -119,14 +114,14 @@
             array.push(fetch('/dispatcher?r=' + run)
                 .then(response => response.text())
                 .then(data => {
-                    var imageBytes = "[[${imageBytes}]]";
-                    var outputImg = '<img src="data:image/jpeg;base64,'+imageBytes+'\"/>';
-                    append(cell, i, outputImg);
+                    cell.getElementsByTagName("td")[i].innerHTML = data;
                 }));
         }
 
         await Promise.all(array);
     }
+
+
 
     async function invokeConcurrently() {
         let table = document.getElementById("results");
@@ -144,10 +139,7 @@
             await fetch('/dispatcher?r=' + run)
                 .then(response => response.text())
                 .then(data => {
-                    var imageBytes = "[[${imageBytes}]]";
-                    var outputImg = '<img src="data:image/jpeg;base64,'+imageBytes+'\"/>';
-
-                    append(cell, i, outputImg);
+                    cell.getElementsByTagName("td")[i].innerHTML = data;
                 });
         }
 
