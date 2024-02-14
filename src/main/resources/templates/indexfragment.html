@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <tbody th:fragment="index_frag" id="output">
+        <td th:each="rocker: ${imageBytes}">
+            <img th:src="@{'data:image/jpeg;base64,'+${rocker}}" width="60" height="60"/>
+        </td>
+    </tbody>
+
+
+</body>
+</html>

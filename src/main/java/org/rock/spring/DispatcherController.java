@@ -16,6 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -35,8 +36,10 @@ public class DispatcherController {
     @GetMapping
     public String guitarHero(Model model) throws URISyntaxException, MalformedURLException {
         model.addAttribute("appName", appName);
+        List<String> rockStarImages = new ArrayList<>();
 
-        ServiceInstance serviceInstance = stork.getService("guitar-hero-service").selectInstance().await().atMost(Duration.ofSeconds(5));
+        for(int i=1; i<=10; i++) {
+            ServiceInstance serviceInstance = stork.getService("guitar-hero-service").selectInstance().await().atMost(Duration.ofSeconds(5));
 
         String url = UriComponentsBuilder.newInstance()
                 .scheme("http")
@@ -49,10 +52,12 @@ public class DispatcherController {
 
         System.out.println(" ---------- Selected Rock Start: " + url);
 
-        String rockStar = restTemplate.getForObject(
-                url, String.class);
-        model.addAttribute("imageBytes", rockStar);
-        return "index";
+            String rockStar = restTemplate.getForObject(
+                    url, String.class);
+            rockStarImages.add(rockStar);
+        }
+        model.addAttribute("imageBytes", rockStarImages);
+        return "indexfragment :: index_frag";
     }
 
 
