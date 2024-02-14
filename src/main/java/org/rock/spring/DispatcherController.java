@@ -3,6 +3,8 @@ package org.rock.spring;
 import io.smallrye.mutiny.Uni;
 import io.smallrye.stork.Stork;
 import io.smallrye.stork.api.ServiceInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,8 @@ import java.util.List;
 @RequestMapping("/dispatcher")
 public class DispatcherController {
 
+    Logger logger = LoggerFactory.getLogger(DispatcherController.class);
+
     @Value("${spring.application.name}")
     String appName;
 
@@ -36,10 +40,7 @@ public class DispatcherController {
     @GetMapping
     public String guitarHero(Model model) throws URISyntaxException, MalformedURLException {
         model.addAttribute("appName", appName);
-        List<String> rockStarImages = new ArrayList<>();
-
-        for(int i=1; i<=10; i++) {
-            ServiceInstance serviceInstance = stork.getService("guitar-hero-service").selectInstance().await().atMost(Duration.ofSeconds(5));
+        ServiceInstance serviceInstance = stork.getService("guitar-hero-service").selectInstance().await().atMost(Duration.ofSeconds(5));
 
         String url = UriComponentsBuilder.newInstance()
                 .scheme("http")
@@ -50,13 +51,11 @@ public class DispatcherController {
                 .toUri()
                 .toURL().toString();
 
-        System.out.println(" ---------- Selected Rock Start: " + url);
-
-            String rockStar = restTemplate.getForObject(
+        String rockStar = restTemplate.getForObject(
                     url, String.class);
-            rockStarImages.add(rockStar);
-        }
-        model.addAttribute("imageBytes", rockStarImages);
+        logger.debug("Selected Rock Start located in url:"+url);
+
+        model.addAttribute("imageBytes", rockStar);
         return "indexfragment :: index_frag";
     }
 
