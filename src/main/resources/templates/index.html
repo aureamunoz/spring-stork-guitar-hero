@@ -85,7 +85,13 @@
                     </tr>
                     </thead>
                     <tbody>
-
+                    <table>
+                    <tr>
+                        <td th:each="rocker: ${imageBytes}">
+                            <img th:src="@{'data:image/jpeg;base64,'+${rocker}}" width="60" height="60"/>
+                        </td>
+                    </tr>
+                    </table>
                     </tbody>
                 </table>
             </div>
