@@ -36,28 +36,21 @@ public class DispatcherController {
     @Autowired
     Stork stork;
 
-
     @GetMapping
     public String guitarHero(Model model) throws URISyntaxException, MalformedURLException {
         model.addAttribute("appName", appName);
-        ServiceInstance serviceInstance = stork.getService("guitar-hero-service").selectInstance().await().atMost(Duration.ofSeconds(5));
+        ServiceInstance serviceInstance = stork.getService("guitar-hero-service").selectInstance().await()
+                .atMost(Duration.ofSeconds(5));
 
-        String url = UriComponentsBuilder.newInstance()
-                .scheme("http")
-                .host(serviceInstance.getHost())
-                .port(serviceInstance.getPort())
-                .path(serviceInstance.getPath().orElse(""))
-                .build()
-                .toUri()
-                .toURL().toString();
+        String url = UriComponentsBuilder.newInstance().scheme("http").host(serviceInstance.getHost())
+                .port(serviceInstance.getPort()).path(serviceInstance.getPath().orElse("")).build().toUri().toURL()
+                .toString();
 
-        String rockStar = restTemplate.getForObject(
-                    url, String.class);
-        logger.debug("Selected Rock Start located in url:"+url);
+        String rockStar = restTemplate.getForObject(url, String.class);
+        logger.debug("Selected Rock Start located in url:" + url);
 
         model.addAttribute("imageBytes", rockStar);
         return "indexfragment :: index_frag";
     }
-
 
 }
