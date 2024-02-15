@@ -15,6 +15,7 @@
 	<description>Stork Guitar Hero project for Spring Boot</description>
 	<properties>
 		<java.version>21</java.version>
+		<formatter-maven-plugin.version>2.23.0</formatter-maven-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -42,6 +43,18 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>net.revelc.code.formatter</groupId>
+				<artifactId>formatter-maven-plugin</artifactId>
+				<version>${formatter-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
