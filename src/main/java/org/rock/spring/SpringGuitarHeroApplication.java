@@ -11,25 +11,25 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-
 @SpringBootApplication
 public class SpringGuitarHeroApplication {
 
-	private static final Logger logger = LoggerFactory.getLogger(SpringGuitarHeroApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(SpringGuitarHeroApplication.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringGuitarHeroApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringGuitarHeroApplication.class, args);
+    }
 
-	@Bean
-	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-		return builder.build();
-	}
-	@Bean
-	public Stork stork(){
-		Stork.initialize();
-		Stork stork = Stork.getInstance();
-		stork.defineIfAbsent("guitar-hero-service", ServiceDefinition.of(new ConsulConfiguration()));
-		return stork;
-	}
+    @Bean
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        return builder.build();
+    }
+
+    @Bean
+    public Stork stork() {
+        Stork.initialize();
+        Stork stork = Stork.getInstance();
+        stork.defineIfAbsent("guitar-hero-service", ServiceDefinition.of(new ConsulConfiguration()));
+        return stork;
+    }
 }

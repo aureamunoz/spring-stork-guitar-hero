@@ -39,14 +39,13 @@ public class Services {
     @Value("${eddie.failure-ratio}")
     int eddieFailureRatio;
 
-
-    public void createHttpServer (String rockStar, int rockStarPort) throws IOException {
+    public void createHttpServer(String rockStar, int rockStarPort) throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(rockStarPort), 0);
         server.createContext("/", (exchange -> {
             byte[] imageBytes = new byte[0];
             try {
                 imageBytes = Files
-                        .readAllBytes(new File(getClass().getResource("/static/"+rockStar).toURI()).toPath());
+                        .readAllBytes(new File(getClass().getResource("/static/" + rockStar).toURI()).toPath());
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
             }
@@ -58,7 +57,7 @@ public class Services {
             exchange.close();
         }));
         server.setExecutor(null); // creates a default executor
-        System.out.println("Listening in port "+rockStarPort);
+        System.out.println("Listening in port " + rockStarPort);
         server.start();
     }
 
