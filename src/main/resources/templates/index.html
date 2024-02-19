@@ -46,8 +46,8 @@
                                 </tbody>
                             </table>
                         <p>You can either call the service 10 times sequentially or concurrently. When using the latter, requests are emitted without any specific order.</p>
-                        <p>The current service discovery strategy is: <strong>{strategies.sd}</strong></p>
-                        <p>The current load balancing strategy is: <strong>{strategies.lb}</strong></p>
+                        <p>The current service discovery strategy is: <strong th:text="${serviceDiscovery}"/></p>
+                        <p>The current load balancing strategy is: <strong th:text="${loadBalancer}"/></p>
                     </div>
                     <div class="column">
                         <div>
