@@ -1,11 +1,7 @@
 package org.rock.spring;
 
 import io.smallrye.stork.Stork;
-import io.smallrye.stork.api.ServiceDefinition;
-import io.smallrye.stork.api.config.ServiceConfig;
 import io.smallrye.stork.springboot.SpringBootApplicationContextProvider;
-import io.smallrye.stork.springboot.SpringBootConfigProvider;
-import io.smallrye.stork.spi.config.ConfigProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -15,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
 
 @SpringBootApplication
 public class SpringGuitarHeroApplication {
@@ -31,7 +26,6 @@ public class SpringGuitarHeroApplication {
         return builder.build();
     }
 
-
     @Bean
     @DependsOn("springBootApplicationContextProvider")
     public Stork stork() {
@@ -42,7 +36,7 @@ public class SpringGuitarHeroApplication {
 
     @Bean
     public SpringBootApplicationContextProvider springBootApplicationContextProvider() {
-      return new SpringBootApplicationContextProvider();
+        return new SpringBootApplicationContextProvider();
     }
 
 }
