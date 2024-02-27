@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.client.RestTemplate;
 
-
 @SpringBootApplication
 public class SpringGuitarHeroApplication {
 
