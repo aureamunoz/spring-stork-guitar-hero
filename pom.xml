@@ -15,6 +15,7 @@
 	<description>Stork Guitar Hero project for Spring Boot</description>
 	<properties>
 		<formatter-maven-plugin.version>2.23.0</formatter-maven-plugin.version>
+		<stork.version>2.6.0</stork.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -28,17 +29,12 @@
 		<dependency>
 			<groupId>io.smallrye.stork</groupId>
 			<artifactId>stork-service-discovery-static-list</artifactId>
-			<version>2.6.0-SNAPSHOT</version>
+			<version>${stork.version}</version>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>io.smallrye.stork</groupId>-->
-<!--			<artifactId>stork-service-discovery-consul</artifactId>-->
-<!--			<version>2.4.0</version>-->
-<!--		</dependency>-->
 		<dependency>
 			<groupId>io.smallrye.stork</groupId>
 			<artifactId>stork-spring-boot-config</artifactId>
-			<version>2.6.0-SNAPSHOT</version>
+			<version>${stork.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
