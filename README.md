@@ -9,7 +9,7 @@ If you want to learn more about Spring Boot, please visit its website: https://s
 The following picture represents our system: it's a very simple application with an UI which is calling a dispatcher resource API. Dispatcher resource is calling a Guitar hero service running remotely. The dispatcher service use the Rest Client for that and Rest Client as shown in the picture is going to delegate to Stork the SD and instance selection.
 The Guitar hero service provides 3 instances: Slash, Jimi Hendrix and Eddie Van Halen.
 
-![](src/main/resources/Stork guitar hero architecture.png)
+![](https://github.com/aureamunoz/spring-stork-guitar-hero/blob/main/Stork%20guitar%20hero%20architecture.png)
 
 
 Slash instance returns the slash version of duke.
