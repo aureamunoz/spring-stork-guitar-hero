@@ -14,7 +14,7 @@
 	<name>spring-guitar-hero</name>
 	<description>Stork Guitar Hero project for Spring Boot</description>
 	<properties>
-		<formatter-maven-plugin.version>2.24.1</formatter-maven-plugin.version>
+		<formatter-maven-plugin.version>2.25.0</formatter-maven-plugin.version>
 		<stork.version>2.7.1</stork.version>
 	</properties>
 	<dependencies>
