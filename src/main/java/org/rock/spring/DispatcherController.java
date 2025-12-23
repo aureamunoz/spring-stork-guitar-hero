@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -31,7 +32,7 @@ public class DispatcherController {
     String appName;
 
     @Autowired
-    RestTemplate restTemplate;
+    RestClient restClient;
 
     @Autowired
     Stork stork;
@@ -46,7 +47,7 @@ public class DispatcherController {
                 .port(serviceInstance.getPort()).path(serviceInstance.getPath().orElse("")).build().toUri().toURL()
                 .toString();
 
-        String rockStar = restTemplate.getForObject(url, String.class);
+        String rockStar = restClient.get().uri(url).retrieve().body(String.class);
         logger.debug("Selected Rock Start located in url:" + url);
 
         model.addAttribute("imageBytes", rockStar);
